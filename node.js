@@ -1,22 +1,27 @@
 
 let row = document.querySelector(".row")
+let show = document.querySelector(".show")
 let fetchData =async()=>{
    
     let data = await fetch("https://api.github.com/users");
     let json = await data.json()
     console.log(json)
-
+ 
     showData(json)
-
 }
 fetchData()
- row.innerHTML ="";
+ 
+   show.textContent="this is loading..."
 let showData=(details)=>{
+    row.innerHTML ="";
+ 
+
     details.forEach((item)=>{
-        
+     
         console.log(item)
         let cardDetails = addCards(item.avatar_url,item.login, item.user_view_type);
         row.innerHTML += cardDetails;
+      show.textContent=""
     })
 }
 
